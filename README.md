@@ -2,16 +2,33 @@
 
 This is a simple React web app for INFO 4235. It uses the browser's location feature to show the user's current location on a map and calculate the distance to the KPU Surrey Library in kilometers.
 
+## Live App
+
+[https://kpu-library-distance-app.vercel.app/](https://kpu-library-distance-app.vercel.app/)
+
 ## Architecture
 
 ```mermaid
-flowchart TD
-    A[User Browser] --> B[React App on Vercel]
-    B --> C[Browser Geolocation API]
-    B --> D[React Leaflet Map]
-    D --> E[OpenStreetMap Tiles]
-    B --> F[Haversine Distance Formula]
-    F --> G[Distance to KPU Surrey Library]
+flowchart LR
+    A[User opens Vercel URL] --> B[Vercel Hosting]
+    B --> C[React + Vite App]
+
+    C --> D[Browser Geolocation API]
+    D --> E[User Latitude and Longitude]
+
+    C --> F[React Leaflet Map Component]
+    F --> G[Leaflet Library]
+    G --> H[OpenStreetMap Tile Server]
+
+    C --> I[KPU Surrey Library Coordinates]
+    E --> J[Haversine Distance Calculator]
+    I --> J
+
+    J --> K[Distance in Kilometers]
+    F --> L[Map Markers and Route Line]
+
+    K --> M[Distance Display on Page]
+    L --> M
 ```
 
 ## Tech Stack
